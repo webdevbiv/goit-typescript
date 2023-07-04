@@ -124,4 +124,6 @@ workWithArr(fruit, "apple", "add");
 workWithArr(fruit, "banana", "add");
 workWithArr(fruit, "watermelon", "add");
 
+workWithArr(fruit, "banana", "delete");
+
 console.log(fruit);

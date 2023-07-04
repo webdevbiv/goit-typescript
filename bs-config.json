@@ -1,0 +1,7 @@
+{
+  "serve": {
+    "ignore": [
+      "**/favicon.ico"
+    ]
+  }
+}
