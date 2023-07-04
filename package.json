@@ -1,4 +1,28 @@
 {
+  "name": "goit-typescript",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webdevbiv/goit-typescript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/webdevbiv/goit-typescript/issues"
+  },
+  "homepage": "https://github.com/webdevbiv/goit-typescript#readme",
+  "description": "",
+  "dependencies": {
+    "-": "^0.0.1",
+    "D": "^1.0.0",
+    "lite-server": "^2.6.1"
+  },
   "devDependencies": {
     "typescript": "^5.1.6"
   }
