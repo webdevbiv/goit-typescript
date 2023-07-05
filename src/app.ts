@@ -79,10 +79,12 @@ if (typeof undef === "string") {
   text = undef;
 }
 
+//NOTE - Tuple
 let fixed: [string, number];
 
 fixed = ["string", 1];
 
+//NOTE -  Enum
 enum toggle {
   ENABLE,
   DISABLE,
@@ -94,6 +96,7 @@ if (service.status === toggle.ENABLE) {
   console.log("it is active");
 }
 
+//NOTE - Union
 let union: number | string;
 
 function combine(param1: string | number, param2: string | number) {
@@ -106,11 +109,15 @@ function combine(param1: string | number, param2: string | number) {
 
 console.log(combine(1, 1));
 
+//NOTE - Literal Type
+
 let active: "start" | "end";
 
-const fruit = [];
+active = "start";
 
-function workWithArr(arr, value: string, action: "add" | "delete") {
+const fruit: string[] = [];
+
+function workWithArr(arr: string[], value: string, action: "add" | "delete") {
   if (action === "add") {
     arr.push(value);
   } else {
@@ -123,7 +130,89 @@ function workWithArr(arr, value: string, action: "add" | "delete") {
 workWithArr(fruit, "apple", "add");
 workWithArr(fruit, "banana", "add");
 workWithArr(fruit, "watermelon", "add");
-
 workWithArr(fruit, "banana", "delete");
 
 console.log(fruit);
+
+//NOTE - Return from function
+
+function print(): void {
+  console.log("Some log");
+}
+
+function combineReturn(num1: number, num2: number): number {
+  return num1 + num2;
+}
+
+function customError(message: string): never {
+  throw new Error(message);
+}
+
+function createPerson(name: string) {
+  return {
+    name,
+  };
+}
+
+const person = createPerson("nikita");
+
+function createServerPerson(name: string) {
+  return eval(`(() => {
+    return {
+      name : "${name}"
+    }
+  })()
+  `);
+}
+
+function createPersonInServer(name: string): { name: string } {
+  return createServerPerson(name);
+}
+
+const user = createServerPerson("Alex");
+
+console.log(user);
+
+//NOTE - Function types
+
+let foo: (param1: number, param2: string) => void;
+
+foo = (param1: number, param2: string) => {
+  console.log("some text foo");
+};
+
+function culc(num1: number, num2: number, callback: (arrg1: number, arg2: number) => number): number {
+  return callback(num1, num2);
+}
+
+function addition(num1: number, num2: number): number {
+  return num1 + num2;
+}
+const result = culc(1, 2, addition);
+
+console.log(result);
+
+//NOTE - Custom types
+
+type PersonType = {
+  readonly name: string;
+  age?: number;
+  showName: () => void;
+};
+
+const person1: PersonType = {
+  name: "John",
+  showName() {
+    console.log(this.name);
+  },
+};
+
+const person2: PersonType = {
+  name: "Max",
+  showName() {
+    console.log(this.name);
+  },
+};
+
+person1.showName();
+person2.showName();
