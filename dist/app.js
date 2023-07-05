@@ -137,4 +137,92 @@ const person2 = {
 };
 person1.showName();
 person2.showName();
+class House {
+    constructor(type, street) {
+        this.type = type;
+        this.street = street;
+        this.tenants = [];
+        this.type = type;
+        this.street = street;
+    }
+    showAddress(add) {
+        console.log("Address: " + this.street + " " + add);
+    }
+    addTenant(name) {
+        this.tenants.push(name);
+    }
+    showType() {
+        console.log("House type: " + this.type);
+    }
+    showTenants() {
+        console.log("Tenants: " + this.tenants);
+    }
+}
+const house = new House("Wood", "Middle-earth");
+house.showAddress("");
+const copyHouse = { showAddress: house.showAddress, street: "new address" };
+house.addTenant("Nikita");
+house.addTenant("Max");
+house.showTenants();
+console.log(house.type);
+class StoneHouse extends House {
+    constructor(street, general) {
+        super("stone", street);
+        this.chargeOfTheHouse = general;
+    }
+    showTenants() {
+        console.log("General: " + this.chargeOfTheHouse);
+        super.showTenants();
+    }
+    showAddress() {
+        console.log("Address: " + this.street);
+    }
+}
+const stoneHouse = new StoneHouse("stone", "Max");
+stoneHouse.addTenant("Anton");
+stoneHouse.addTenant("Victor");
+stoneHouse.showTenants();
+class UseStatic {
+    constructor() {
+        UseStatic.count += 1;
+    }
+    static isStaticMethod() {
+        console.log("Im static method");
+    }
+    showCount() {
+        console.log(UseStatic.count);
+    }
+}
+UseStatic.count = 0;
+const obj1 = new UseStatic();
+const obj2 = new UseStatic();
+const obj3 = new UseStatic();
+obj1.showCount();
+obj2.showCount();
+obj3.showCount();
+UseStatic.isStaticMethod();
+class Plane {
+    constructor() {
+        this.pilotInCabin = false;
+    }
+    sitInPlane() {
+        this.pilotInCabin = true;
+    }
+}
+class Maize extends Plane {
+    startEngine() {
+        return "Engine started ta-ta-ta";
+    }
+}
+class Boeing extends Plane {
+    startEngine() {
+        return "Engine started voo-oo-oo";
+    }
+}
+const maize = new Maize();
+const boeing = new Boeing();
+maize.sitInPlane();
+boeing.sitInPlane();
+console.log(maize.startEngine());
+console.log(boeing.startEngine());
 //# sourceMappingURL=app.js.map

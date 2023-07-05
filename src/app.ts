@@ -216,3 +216,133 @@ const person2: PersonType = {
 
 person1.showName();
 person2.showName();
+
+//NOTE - Classes
+
+class House {
+  private tenants: string[] = [];
+
+  constructor(public readonly type: string, protected street: string) {
+    this.type = type;
+    this.street = street;
+  }
+  public showAddress(this: House, add?: string): void {
+    console.log("Address: " + this.street + " " + add);
+  }
+
+  public addTenant(name: string) {
+    this.tenants.push(name);
+  }
+
+  public showType() {
+    console.log("House type: " + this.type);
+  }
+  public showTenants() {
+    console.log("Tenants: " + this.tenants);
+  }
+}
+
+const house = new House("Wood", "Middle-earth");
+
+//NOTE - Methods
+
+house.showAddress("");
+
+const copyHouse = { showAddress: house.showAddress, street: "new address" };
+
+// copyHouse.showAddress("string");
+
+house.addTenant("Nikita");
+house.addTenant("Max");
+
+house.showTenants();
+
+console.log(house.type);
+
+// house.type = "";
+
+class StoneHouse extends House {
+  private chargeOfTheHouse: string;
+  constructor(street: string, general: string) {
+    super("stone", street);
+
+    this.chargeOfTheHouse = general;
+  }
+
+  public showTenants(): void {
+    console.log("General: " + this.chargeOfTheHouse);
+    super.showTenants();
+  }
+
+  public showAddress(): void {
+    console.log("Address: " + this.street);
+  }
+}
+
+const stoneHouse = new StoneHouse("stone", "Max");
+
+stoneHouse.addTenant("Anton");
+stoneHouse.addTenant("Victor");
+
+stoneHouse.showTenants();
+
+//NOTE - Static
+
+class UseStatic {
+  private static count = 0;
+
+  constructor() {
+    UseStatic.count += 1;
+  }
+
+  public static isStaticMethod() {
+    console.log("Im static method");
+  }
+
+  public showCount() {
+    console.log(UseStatic.count);
+  }
+}
+
+const obj1 = new UseStatic();
+const obj2 = new UseStatic();
+const obj3 = new UseStatic();
+
+obj1.showCount();
+obj2.showCount();
+obj3.showCount();
+
+UseStatic.isStaticMethod();
+
+//NOTE - Abstract classes
+
+abstract class Plane {
+  protected pilotInCabin = false;
+
+  public sitInPlane() {
+    this.pilotInCabin = true;
+  }
+
+  public abstract startEngine(): string;
+}
+
+class Maize extends Plane {
+  public startEngine(): string {
+    return "Engine started ta-ta-ta";
+  }
+}
+
+class Boeing extends Plane {
+  public startEngine(): string {
+    return "Engine started voo-oo-oo";
+  }
+}
+
+const maize = new Maize();
+const boeing = new Boeing();
+
+maize.sitInPlane();
+boeing.sitInPlane();
+
+console.log(maize.startEngine());
+console.log(boeing.startEngine());
